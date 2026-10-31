@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Atlas — Countries of the World</title>
+        <link rel="stylesheet" href="./index.css">
+    </head>
+    <body>
+        <div class="app" id="app">
+
+            <header class="topbar">
+                <a class="brand" href="#home" aria-label="Atlas home">
+                    <div class="brand-mark">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="8.5"/>
+                            <path d="M3.8 9h16.4M3.8 15h16.4M12 3.5c2.5 2.4 3.5 5.2 3.5 8.5s-1 6.1-3.5 8.5c-2.5-2.4-3.5-5.2-3.5-8.5s1-6.1 3.5-8.5Z"/>
+                        </svg>
+                    </div>
+                    <div class="brand-name">
+                        atlas<span>.</span>
+                    </div>
+                </a>
+                
+                <button class="theme-toggle" id="themeBtn" aria-label="Переключить тему">
+                    <span class="theme-knob">
+                        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.6 5.6 7 7m10 10 1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/>
+                            <circle cx="12" cy="12" r="4"/>
+                        </svg>
+                    </span>
+                    <svg class="theme-track-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M20.5 15.5A8.5 8.5 0 0 1 8.5 3.5 8.5 8.5 0 1 0 20.5 15.5Z"/>
+                    </svg>
+                </button>
+            </header>   
+
+            <div class="layout">
+                <aside class="sidebar" id="sidebar">
+                    <div>
+                        <div class="nav-label">Workspace</div>
+                        <button class="nav-item active" data-nav="home">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                                <rect x="3" y="3" width="7" height="7" rx="2"/>
+                                <rect x="14" y="3" width="7" height="7" rx="2"/>
+                                <rect x="3" y="14" width="7" height="7" rx="2"/>
+                                <rect x="14" y="14" width="7" height="7" rx="2"/>
+                            </svg>
+                            Explore countries <span class="nav-count">01</span>
+                        </button>
+                        <button class="nav-item" data-nav="favorites">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                                <path d="M20.8 4.6a5.4 5.4 0 0 0-7.6 0L12 5.8l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6l1.2 1.2L12 21l7.6-7.6 1.2-1.2a5.4 5.4 0 0 0 0-7.6Z"/>
+                            </svg>
+                            Saved places <span class="nav-count" id="favCount">00</span>
+                        </button>
+                        <button class="nav-item" data-nav="random">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                                <path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/>
+                            </svg>
+                            Surprise me
+                        </button>
+                    </div>
+                    <div>
+                        <div class="nav-label">Discover by</div>
+                        <button class="nav-item region-nav" data-region="Europe">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>
+                            </svg>
+                            Europe
+                        </button>
+                        <button class="nav-item region-nav" data-region="Asia">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                                <path d="m12 3 2.4 5.6L20 11l-5.6 2.4L12 19l-2.4-5.6L4 11l5.6-2.4L12 3Z"/>
+                            </svg>
+                            Asia
+                        </button>
+                        <button class="nav-item region-nav" data-region="Americas">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                                <path d="M12 3c-3 3-5 5-5 8a5 5 0 0 0 10 0c0-3-2-5-5-8Z"/>
+                                <path d="M5 17c1.8 2.5 4 4 7 4s5.2-1.5 7-4"/>
+                            </svg>
+                            Americas
+                        </button>
+                        <button class="nav-item region-nav" data-region="Africa">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                                <path d="M12 2.5 18 6l2 6-4 8-4 2-4-4-4-7 3-7 5-1.5Z"/>
+                            </svg>
+                            Africa
+                        </button>
+                    </div>
+                    <div class="side-bottom">
+                        <div class="mini-card">
+                            <strong>A world of discovery.</strong>
+                            <p>One planet, 195 countries, endless stories to explore.</p>
+                            <button id="surpriseBtn">
+                                Explore somewhere ↗
+                            </button>
+                        </div>
+                    </div>
+                </aside>
+
+                <main class="main">
+                    <div class="home-page" id="homePage">
+                        <div class="page-head">
+                            <div>
+                                <div class="eyebrow">Your world, one click away</div>
+                                <h1>Explore the world<span style="color:var(--site-primary)">.</span></h1>
+                                <p>Discover places, cultures and the little details that make every country unique.</p>
+                            </div>
+                            <div class="head-stat">
+                                <div class="stat-orb">✳</div>
+                                <div>
+                                    <small>Countries to discover</small><strong>195 <span style="color:var(--muted);font-size:11px;font-weight:500">/ 1 planet</span></strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="workspace">
+                            <section class="content-col">
+                                <div class="region-bar" id="regionBar">
+                                    <button class="region-btn" data-region="Africa">Africa</button>
+                                    <button class="region-btn" data-region="Americas">Americas</button>
+                                    <button class="region-btn" data-region="Asia">Asia</button>
+                                    <button class="region-btn" data-region="Europe">Europe</button>
+                                    <button class="region-btn" data-region="Oceania">Oceania</button>
+                                </div>
+                                <div class="section-row">
+                                    <div>
+                                        <h2 id="listTitle">All countries</h2>
+                                        <div class="results-count" id="resultCount">Showing 24 countries</div>
+                                    </div>
+                                    <div class="select-wrap">
+                                        <select id="sortSelect" aria-label="Сортировка">
+                                            <option value="name">A–Z name</option>
+                                            <option value="population">Population</option>
+                                            <option value="area">Area</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="country-grid" id="countryGrid">
+
+                                </div>
+                                <div class="pagination-row">
+                                    <label class="page-size">
+                                        Show 
+                                        <select id="pageSize">
+                                            <option>6</option>
+                                            <option selected>9</option>
+                                            <option>12</option>
+                                        </select> per page
+                                    </label>
+                                    <div class="pagination" id="pagination">
+
+                                    </div>
+                                </div>
+                            </section>
+                            <aside class="detail-column">
+                                <section class="panel">
+                                    <div class="panel-heading">
+                                        <h2>Find a country</h2>
+                                        <span class="tiny-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                                                <circle cx="10.8" cy="10.8" r="6.8"/>
+                                                <path d="m16 16 4.5 4.5"/>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="search-field">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                            <circle cx="10.8" cy="10.8" r="6.8"/>
+                                            <path d="m16 16 4.5 4.5"/>
+                                        </svg>
+                                        <input id="sideSearch" placeholder="Try Japan, Brazil..." autocomplete="off" aria-label="Найти страну">
+                                    </div>
+                                    <div class="suggestions" id="suggestions">
+                                        <div class="suggestions-inner" id="suggestionsInner">
+
+                                        </div>
+                                    </div>
+                                </section>
+                                <section class="panel detail-panel" id="selectedPanel">
+                                    <div class="panel-heading">
+                                        <h2>Country snapshot</h2>
+                                        <span class="tiny-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                                                <path d="M12 3v18M3 12h18"/>
+                                                <circle cx="12" cy="12" r="9"/>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div id="selectedContent">
+                                        <div class="detail-empty">
+                                            <div class="skeleton-globe">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                                    <circle cx="12" cy="12" r="9"/>
+                                                    <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>
+                                                </svg>
+                                            </div>
+                                            <h3>Your next discovery awaits</h3>
+                                            <p>Select a country on the map of cards or search for it above to reveal its story.</p>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section class="panel facts-panel">
+                                    <div class="eyebrow">Little fact, big world</div>
+                                    <h3>Every country has a story worth knowing.</h3>
+                                    <p>From tiny island nations to vast continents, explore what makes our planet extraordinary.</p>
+                                </section>
+                            </aside>
+                        </div>
+                    </div>
+
+                    <div class="country-page" id="countryPage">
+                        <button class="back-link" id="backBtn">
+                            <span>←</span> Back to all countries
+                        </button>
+                        <div id="countryDetails">
+                            
+                        </div>
+                    </div>
+                
+                </main>
+            </div>
+
+            <div class="toast" id="toast" role="status"></div>
+
+        </div>
+
+        <script src="./index.js"></script>
+    </body>
+</html>
